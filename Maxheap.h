@@ -11,7 +11,8 @@ struct PriorityQueue
 private:
     // vector to store heap elements
     vector<int> A;
-
+    vector<int> original;
+    
     // return parent of `A[i]`
     // don't call this function if `i` is already a root node
     int PARENT(int i) {
@@ -41,11 +42,11 @@ private:
 
         // compare `A[i]` with its left and right child
         // and find the largest value
-        if (left < size() && A[left] > A[i]) {
+        if (left < size() && original[A[left]] > original[A[i]]) {
             largest = left;
         }
 
-        if (right < size() && A[right] > A[largest]) {
+        if (right < size() && original[A[right]] > original[A[largest]]) {
             largest = right;
         }
 
@@ -62,7 +63,7 @@ private:
     void heapify_up(int i)
     {
         // check if the node at index `i` and its parent violate the heap property
-        if (i && A[PARENT(i)] < A[i])
+        if (i && original[A[PARENT(i)]] < original[A[i]])
         {
             // swap the two if heap property is violated
             swap(A[i], A[PARENT(i)]);
@@ -78,8 +79,16 @@ public:
         return A.size();
     }
 
+    //to initialize the heap
+    void initize(vector<int> input) {
+        original = input;
+        for (int i = 0; i < input.size();i++) {
+            A.push_back(i);
+        }
+    }
+
     // Function to check if the heap is empty or not
-    bool empty() {
+    bool isEmpty() {
         return size() == 0;
     }
 
@@ -95,8 +104,9 @@ public:
     }
 
     // Function to remove an element with the highest priority (present at the root)
-    void pop()
+    int pop()
     {
+        int out = A[0];
         try {
             // if the heap has no elements, throw an exception
             if (size() == 0)
@@ -104,6 +114,7 @@ public:
                 throw out_of_range("Vector<X>::at() : "
                     "index is out of range(Heap underflow)");
             }
+
 
             // replace the root of the heap with the last element
             // of the vector
@@ -117,6 +128,8 @@ public:
         catch (const out_of_range& oor) {
             cout << endl << oor.what();
         }
+
+        return out;
     }
 
     // Function to return an element with the highest priority (present at the root)
