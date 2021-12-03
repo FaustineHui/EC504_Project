@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <string>
+#include "Maxheap.h"
 using namespace std;
 
 int KMPsearch (char* text, char* pattern);
@@ -18,6 +20,8 @@ int main(int argc, char *argv[]) { // use the example from project proposal
 	int count2 = 0;
 	int count3 = 0;
 
+
+
 	while (pattern != NULL){ //split until pattern is null
 		count1 += KMPsearch(tweet1,pattern);
 		count2 += KMPsearch(tweet2,pattern);
@@ -25,9 +29,16 @@ int main(int argc, char *argv[]) { // use the example from project proposal
 		pattern = strtok(NULL," ");
 	}
 
-	cout<<count1<<endl; // 4 according to the project proposal
-	cout<<count2<<endl;	// 5 according to the project proposal
-	cout<<count3<<endl; // 1 according to the project proposal
+	PriorityQueue x;
+	vector<int> input;
+	input.push_back(count1);
+	input.push_back(count2);
+	input.push_back(count3);
+	x.initize(input);
+
+	cout<<x.pop()<<endl; 
+	cout<<x.pop()<<endl;	
+	cout<<x.pop()<<endl; 
 
 	return 0;
 }
@@ -50,9 +61,7 @@ int KMPsearch(char* text, char* pattern) {
 		}
 
 		if (j==m){//if j exceed the last letter of the pattern, pattern found and go to the index referred by the prefix array
-			cout<<"Pattern is found at index "<<(i-j)<<endl;
 			count++;
-			cout<<"count: "<<count<<endl;
 			j = prefix[j-1];
 		}
 
