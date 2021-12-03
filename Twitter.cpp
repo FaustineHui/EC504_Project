@@ -1,51 +1,64 @@
 #include <iostream>
 #include <fstream>
-#include <map>
 #include <string>
 #include "Maxheap.h"
 using namespace std;
 
-int KMPsearch (char* text, char* pattern);
-void computeprefix (char* pattern, int m, int*prefix);
+int KMPsearch (string text, string pattern);
+void computeprefix (string pattern, int m, int*prefix);
 
 int main(int argc, char *argv[]) { // use the example from project proposal
-	char tweet1[] = "that moment while reading a student paper when the font changes";
-	char tweet2[] = "followed by that moment when you Google the passages before and after the font changes";
-	char tweet3[] = "just happened to me in this moment";
-	char query[] = "the moment font changes";
 
-	char* pattern = strtok(query, " "); // split the query with blanks, each word is then searched within tweets
+	vector<int> Ncount;
+	vector<string> tweets;
+	string tweet;
+	string pattern = "";
+	string query;
 
-	int count1 = 0;//count the appearance for each searched word
-	int count2 = 0;
-	int count3 = 0;
+	ifstream infile;
+	infile.open(argv[1]);
+  	if(!infile){//error checking
+    cout << "Error opening file " <<endl;
+    return -1;
+  	} 
+  	while (getline(infile,tweet)){ // read in the tweets
+  		tweets.push_back(tweet);
+  		Ncount.push_back(0);
+  	}
+  	infile.close();
 
-
-
-	while (pattern != NULL){ //split until pattern is null
-		count1 += KMPsearch(tweet1,pattern);
-		count2 += KMPsearch(tweet2,pattern);
-		count3 += KMPsearch(tweet3,pattern);
-		pattern = strtok(NULL," ");
+  	cout<<"Enter your query:"<<endl;
+  	getline(cin,query);
+	for (int i=0;i<query.size();i++){ //split the queryuntil pattern is null
+		if (query[i] == ' '){
+		for (int j=0;j<Ncount.size();j++){
+			Ncount[j] += KMPsearch(tweets[j],pattern);
+			Ncount[j] += KMPsearch(tweets[j],pattern);
+			Ncount[j] += KMPsearch(tweets[j],pattern);
+	}
+		pattern = "";
+	}
+		else pattern += query[i];
 	}
 
-	PriorityQueue x;
-	vector<int> input;
-	input.push_back(count1);
-	input.push_back(count2);
-	input.push_back(count3);
-	x.initize(input);
-
-	cout<<x.pop()<<endl; 
-	cout<<x.pop()<<endl;	
-	cout<<x.pop()<<endl; 
-
+	PriorityQueue Mheap; // Max heap
+	Mheap.initize(Ncount);
+	cout<<endl;
+	cout<<"Your most similar tweets are:"<<endl;
+	int k =0;
+	while (k!=10) { //we only need top 10 tweets
+		if (!Mheap.isEmpty()){
+			cout<<tweets[Mheap.pop()]<<endl; 
+			k++;
+		}
+		else break;
+	}
 	return 0;
 }
 
-int KMPsearch(char* text, char* pattern) {
-	int n = strlen(text); // read the length of pattern and text
-	int m = strlen(pattern);
+int KMPsearch(string text, string pattern) {
+	int n = text.size(); // read the length of pattern and text
+	int m = pattern.size();
 	int prefix[m]; // prefix table's length equal to length of the pattern
 
 	computeprefix(pattern,m,prefix); // precompute the prefix table
@@ -73,7 +86,7 @@ int KMPsearch(char* text, char* pattern) {
 	return count;
 }
 
-void computeprefix (char* pattern, int m, int*prefix){
+void computeprefix (string pattern, int m, int*prefix){
 	int len = 0; //length of the longest prefix suffix from the previous index
 
 	prefix[0] = 0; //prefix array indexed at 0 is always set to 0
