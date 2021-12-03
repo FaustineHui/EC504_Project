@@ -83,7 +83,7 @@ public:
     void initize(vector<int> input) {
         original = input;
         for (int i = 0; i < input.size();i++) {
-            A.push_back(i);
+            push(i);
         }
     }
 
