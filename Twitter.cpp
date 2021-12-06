@@ -7,7 +7,7 @@ using namespace std;
 int KMPsearch (string text, string pattern);
 void computeprefix (string pattern, int m, int*prefix);
 
-int main(int argc, char *argv[]) { // use the example from project proposal
+int main(int argc, char *argv[]) { 
 
 	vector<int> Ncount;
 	vector<string> tweets;
@@ -22,13 +22,14 @@ int main(int argc, char *argv[]) { // use the example from project proposal
     return -1;
   	} 
   	while (getline(infile,tweet)){ // read in the tweets
+  		if (tweet.empty()) continue;
   		tweets.push_back(tweet);
   		Ncount.push_back(0);
   	}
   	infile.close();
 
   	cout<<"Enter your query:"<<endl;
-  	getline(cin,query);
+  	getline(cin,query); 
 
 
 	for (int i=0;i<=query.size();i++){ //split the queryuntil pattern is null
