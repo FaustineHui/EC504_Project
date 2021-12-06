@@ -29,11 +29,11 @@ int main(int argc, char *argv[]) { // use the example from project proposal
 
   	cout<<"Enter your query:"<<endl;
   	getline(cin,query);
-	for (int i=0;i<query.size();i++){ //split the queryuntil pattern is null
-		if (query[i] == ' '){
+
+
+	for (int i=0;i<=query.size();i++){ //split the queryuntil pattern is null
+		if (query[i] == ' ' || query[i] == '\0'){
 		for (int j=0;j<Ncount.size();j++){
-			Ncount[j] += KMPsearch(tweets[j],pattern);
-			Ncount[j] += KMPsearch(tweets[j],pattern);
 			Ncount[j] += KMPsearch(tweets[j],pattern);
 	}
 		pattern = "";
