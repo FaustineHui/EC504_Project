@@ -74,7 +74,8 @@ int KMPsearch(string text, string pattern) {
 			j++;
 		}
 
-		if (j==m){//if j exceed the last letter of the pattern, pattern found and go to the index referred by the prefix array
+		if (j==m){//if j exceed the last letter of the pattern, pattern found and go to the index 
+			           //referred by the prefix array
 			count++;
 			j = prefix[j-1];
 		}
@@ -94,7 +95,8 @@ void computeprefix (string pattern, int m, int*prefix){
 
 	int i = 1; //start to compute
 	while (i<m){
-		if (pattern[i] == pattern[len]){ // length of longest prefix suffix++ if the next letter matches the letter indexed at len+1
+		if (pattern[i] == pattern[len]){ // length of longest prefix suffix++ 
+									//if the next letter matches the letter indexed at len+1
 			len++;
 			prefix[i]=len;
 			i++;
