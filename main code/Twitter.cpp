@@ -7,7 +7,7 @@ using namespace std;
 int KMPsearch (string text, string pattern);
 void computeprefix (string pattern, int m, int*prefix);
 
-int main(int argc, char *argv[]) { // use the example from project proposal
+int main(int argc, char *argv[]) { 
 
 	vector<int> Ncount;
 	vector<string> tweets;
@@ -22,13 +22,14 @@ int main(int argc, char *argv[]) { // use the example from project proposal
     return -1;
   	} 
   	while (getline(infile,tweet)){ // read in the tweets
+  		if (tweet.empty()) continue;
   		tweets.push_back(tweet);
   		Ncount.push_back(0);
   	}
   	infile.close();
 
   	cout<<"Enter your query:"<<endl;
-  	getline(cin,query);
+  	getline(cin,query); 
 
 
 	for (int i=0;i<=query.size();i++){ //split the queryuntil pattern is null
@@ -73,7 +74,8 @@ int KMPsearch(string text, string pattern) {
 			j++;
 		}
 
-		if (j==m){//if j exceed the last letter of the pattern, pattern found and go to the index referred by the prefix array
+		if (j==m){//if j exceed the last letter of the pattern, pattern found and go to the index 
+			           //referred by the prefix array
 			count++;
 			j = prefix[j-1];
 		}
@@ -93,7 +95,8 @@ void computeprefix (string pattern, int m, int*prefix){
 
 	int i = 1; //start to compute
 	while (i<m){
-		if (pattern[i] == pattern[len]){ // length of longest prefix suffix++ if the next letter matches the letter indexed at len+1
+		if (pattern[i] == pattern[len]){ // length of longest prefix suffix++ 
+									//if the next letter matches the letter indexed at len+1
 			len++;
 			prefix[i]=len;
 			i++;
