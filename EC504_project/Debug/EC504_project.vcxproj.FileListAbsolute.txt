@@ -1,4 +1,0 @@
-C:\Users\22710\Desktop\TwitterAPI\EC504_project\Debug\EC504_project.vcxproj.AssemblyReference.cache
-C:\Users\22710\Desktop\TwitterAPI\EC504_project\Debug\EC504project.MyForm.resources
-C:\Users\22710\Desktop\TwitterAPI\EC504_project\Debug\EC504_project.vcxproj.GenerateResource.cache
-C:\Users\22710\Desktop\TwitterAPI\EC504_project\Debug\EC504_project.exe

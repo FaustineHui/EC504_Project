@@ -1,0 +1,9 @@
+﻿  MyForm.cpp
+C:\Users\22710\Desktop\TwitterAPI\EC504_project\Maxheap.h(45,18): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\22710\Desktop\TwitterAPI\EC504_project\Maxheap.h(49,19): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\22710\Desktop\TwitterAPI\EC504_project\Maxheap.h(85,27): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\22710\Desktop\TwitterAPI\EC504_project\MyForm.h(324,20): warning C4018: “<=”: 有符号/无符号不匹配
+C:\Users\22710\Desktop\TwitterAPI\EC504_project\MyForm.h(326,22): warning C4018: “<”: 有符号/无符号不匹配
+C:\Users\22710\Desktop\TwitterAPI\EC504_project\MyForm.cpp(6,39): warning C4829: 函数 main 的参数可能不正确。请考虑使用“int main(Platform::Array<Platform::String^>^ argv)”
+  MyForm.obj : 遇到了 MSIL 模块；对 MSIL 禁用了增量链接；正在执行完全链接
+  EC504_project.vcxproj -> C:\Users\22710\Desktop\TwitterAPI\EC504_project\Debug\EC504_project.exe
